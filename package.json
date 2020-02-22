@@ -1,0 +1,40 @@
+{
+  "name": "bee-cqrs",
+  "version": "1.0.0",
+  "description": "BeeTech CQRS framework",
+  "main": "src/bee-cqrs.ts",
+  "scripts": {
+    "test": "jest 'test/'"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/jest": "^25.1.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.7.0",
+    "jest": "^25.1.0",
+    "jest-when": "^2.7.0",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coverageReporters": [
+      "html",
+      "json",
+      "text-summary",
+      "lcov"
+    ]
+  }
+}
