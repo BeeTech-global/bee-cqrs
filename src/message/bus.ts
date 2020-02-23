@@ -1,5 +1,5 @@
 export interface HandlerFunc {
-    <TMsg, TResult>(message: TMsg): TResult;
+    <TMsg, TResult>(message: TMsg): TResult | null;
 }
 
 export interface Middleware {

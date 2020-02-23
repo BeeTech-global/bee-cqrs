@@ -1,36 +1,7 @@
-import { HandlerFunc, MessageBus } from '../../../src/message/bus';
+import { HandlerFunc } from '../../../src/message/bus';
+import { MiddlewareFoo } from '../../mock/middleware';
+import { Message, StubMessageBus } from '../../mock/message';
 
-class Message {
-    public constructor(
-        public count: number= 0
-    ) {}
-}
-
-class MiddlewareFoo {
-    private foo: number = 0;
-
-    public constructor(init: number = 0) {
-        this.foo = init;
-    }
-
-    public getFooCound(): number {
-        return this.foo;
-    }
-
-    public handle(next: HandlerFunc): HandlerFunc {
-        return <TMsg, TResult>(msg: TMsg): TResult => {
-            this.foo++;
-            next(msg);
-            return
-        }
-    }
-}
-
-class StubMessageBus extends MessageBus {
-    public execute<TMsg>(message: TMsg, handler: HandlerFunc): void {
-        return this.handle(message, handler);
-    }
-}
 
 describe('MessageBus', () => {
     it('Should handle all middlewares', () => {
@@ -44,7 +15,6 @@ describe('MessageBus', () => {
 
         const msg = new Message();
         const handlerFn: HandlerFunc = <TMsg, TResult>(msg: TMsg): TResult => {
-            const x = msg;
             return null;
         };
         bus.execute(msg, handlerFn);

@@ -14,8 +14,9 @@ export class CommandBus extends MessageBus {
 
     public execute<T>(cmd: T): void {
         const handler = this.registry.locate(cmd);
-        const handlerFn: HandlerFunc = <TMsg, TResult>(msg: TMsg): TResult => {
+        const handlerFn: HandlerFunc = <TMsg, TResult>(msg: TMsg): TResult | null => {
             handler.execute(msg);
+
             return null;
         };
 
