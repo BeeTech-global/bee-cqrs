@@ -1,13 +1,22 @@
 {
-  "name": "bee-cqrs",
-  "version": "1.0.0",
+  "name": "@beetech/cqrs",
+  "version": "0.0.0",
   "description": "BeeTech CQRS framework",
   "main": "src/index.ts",
   "scripts": {
-    "test": "jest 'test/'"
+    "test": "jest 'test/'",
+    "coverage": "jest 'test/' --coverage"
   },
+  "keywords": [
+    "cqrs",
+    "command",
+    "query",
+    "bus",
+    "message",
+    "ddd"
+  ],
   "author": "",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^25.1.2",
     "eslint": "^6.8.0",
