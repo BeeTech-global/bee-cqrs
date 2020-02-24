@@ -2,8 +2,8 @@
   "name": "@beetech/cqrs",
   "version": "0.0.5",
   "description": "BeeTech CQRS framework",
-  "main": "src/index.ts",
-  "typings": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest 'src/test/'",
     "coverage": "jest 'src/test/' --coverage",
