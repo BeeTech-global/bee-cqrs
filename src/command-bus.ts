@@ -1,5 +1,5 @@
-import { HandlerRegistry } from '../registry/registry';
-import { HandlerFunc, MessageBus } from '../message/bus';
+import { HandlerRegistry } from './registry';
+import { HandlerFunc, MessageBus } from './message-bus';
 
 export interface CommandHandler<TCommand> {
     execute(cmd: TCommand): void;
@@ -14,7 +14,7 @@ export class CommandBus extends MessageBus {
 
     public execute<T>(cmd: T): void {
         const handler = this.registry.locate(cmd);
-        const handlerFn: HandlerFunc = <TMsg, TResult>(msg: TMsg): TResult | null => {
+        const handlerFn: HandlerFunc = <TMsg, TResult>(msg: TMsg): TResult => {
             handler.execute(msg);
 
             return null;

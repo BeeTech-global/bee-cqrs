@@ -2,7 +2,7 @@
   "name": "bee-cqrs",
   "version": "1.0.0",
   "description": "BeeTech CQRS framework",
-  "main": "src/bee-cqrs.ts",
+  "main": "src/index.ts",
   "scripts": {
     "test": "jest 'test/'"
   },

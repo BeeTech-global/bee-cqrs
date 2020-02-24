@@ -1,4 +1,4 @@
-import { HandlerFunc, MessageBus } from '../../src/message/bus';
+import { HandlerFunc, MessageBus } from '../../src/message-bus';
 
 export class Message {
     public constructor(

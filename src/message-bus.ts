@@ -6,7 +6,7 @@ export interface Middleware {
     (handler: HandlerFunc): HandlerFunc;
 }
 
-export class MessageBus {
+export abstract class MessageBus {
     private middlewares: Middleware[] = [];
 
     public use(middleware: Middleware): void {

@@ -1,5 +1,5 @@
-import { HandlerRegistry, InMemoryHandlerRegistry } from '../../../src/registry/registry';
-import { HandlerAlreadyExists, HandlerNotFound } from '../../../src/error/error';
+import { HandlerRegistry, InMemoryHandlerRegistry } from '../../../src/registry';
+import { HandlerAlreadyExists, HandlerNotFound } from '../../../src/error';
 
 class GenericCommand {}
 class GenericCommand2 {}

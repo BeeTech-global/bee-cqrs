@@ -1,4 +1,4 @@
-import { CommandHandler } from '../../src/command/bus';
+import { CommandHandler } from '../../src/command-bus';
 
 export class SetName {
     public constructor(

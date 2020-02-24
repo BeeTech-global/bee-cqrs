@@ -1,4 +1,4 @@
-import { HandlerAlreadyExists, HandlerNotFound } from '../error/error';
+import { HandlerAlreadyExists, HandlerNotFound } from './error';
 
 interface HandlerRef<T> {
     [cmd: string]: T;

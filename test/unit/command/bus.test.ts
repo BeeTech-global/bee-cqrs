@@ -1,5 +1,5 @@
-import { InMemoryHandlerRegistry } from '../../../src/registry/registry';
-import { CommandBus, CommandHandler } from '../../../src/command/bus';
+import { InMemoryHandlerRegistry } from '../../../src/registry';
+import { CommandBus, CommandHandler } from '../../../src/command-bus';
 import {
     AsyncSetIdHandler,
     AsyncSetNameHandler,
@@ -17,7 +17,7 @@ describe('CommandBus', () => {
         idCmd = new SetId('fake-id');
     });
 
-    it('Should execute all sync commands', async () => {
+    it('Should execute all sync commands', () => {
         const nameHandler = new SetNameHandler();
         const idHandler = new SetIdHandler();
 
