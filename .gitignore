@@ -3,5 +3,8 @@
 # Coverage directory used by tools like istanbul
 coverage
 
+# dist
+dist
+
 # Dependency directories
 node_modules
