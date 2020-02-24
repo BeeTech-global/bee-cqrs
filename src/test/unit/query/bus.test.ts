@@ -1,26 +1,49 @@
-import { InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../../index';
+import { HandlerRegistry, InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../../';
 import { AsyncMultiplierHandler, Multiplier, MultiplierHandler } from '../../mock/query';
+import each from "jest-each";
+
+const dataProvider = () => {
+    const dataSet = [
+        [5, 10, 50],
+        [99, 2, 198],
+        [123, 99, 12177],
+        [567, 700, 396900],
+    ];
+
+    return {
+        'Should execute synchronous queries': { sync: true, dataSet },
+        'Should execute asynchronous queries': { sync: false, dataSet },
+    }
+};
+
+const buildRegistry = (sync: boolean): HandlerRegistry<QueryHandler<any, any>> => {
+    const registry = new InMemoryHandlerRegistry<QueryHandler<any, any>>();
+    if (!sync) {
+        return registry.register('Multiplier', new AsyncMultiplierHandler());
+    }
+
+    return registry.register('Multiplier', new MultiplierHandler());
+};
 
 describe('QueryBus', () => {
-    it('Should execute all sync queries', () => {
-        const multiplierHandler = new MultiplierHandler();
-        const registry = (new InMemoryHandlerRegistry<QueryHandler<any, any>>())
-            .register('Multiplier', multiplierHandler);
-
+    Object.entries(dataProvider()).forEach(([name, { sync, dataSet }]) => {
+        const registry = buildRegistry(sync);
         const queryBus = new QueryBus(registry);
-        const result = queryBus.query(new Multiplier(5, 4));
 
-        expect(result).toEqual(20);
-    });
-
-    it('Should execute all async queries', async () => {
-        const multiplierHandler = new AsyncMultiplierHandler();
-        const registry = (new InMemoryHandlerRegistry<QueryHandler<any, any>>())
-            .register('Multiplier', multiplierHandler);
-
-        const queryBus = new QueryBus(registry);
-        const result = await queryBus.query(new Multiplier(3, 10));
-
-        expect(result).toEqual(30);
+        describe(name, () => {
+            each(dataSet).describe('returns the result of multiplying %s by %s', (a, b, expected) => {
+                if (sync) {
+                    test(`returns ${expected}`, () => {
+                        const result = queryBus.query(new Multiplier(a, b));
+                        expect(result).toBe(expected)
+                    });
+                } else {
+                    test(`returns ${expected}`, async () => {
+                        const result = await queryBus.query(new Multiplier(a, b));
+                        expect(result).toBe(expected)
+                    });
+                }
+            });
+        });
     });
 });

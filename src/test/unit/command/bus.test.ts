@@ -20,7 +20,7 @@ describe('CommandBus', () => {
         const nameHandler = new SetNameHandler();
         const idHandler = new SetIdHandler();
 
-        const registry = (new InMemoryHandlerRegistry<CommandHandler<any>>())
+        const registry = (new InMemoryHandlerRegistry<CommandHandler<any, any>>())
             .register('SetId', idHandler)
             .register('SetName', nameHandler);
 
@@ -37,7 +37,7 @@ describe('CommandBus', () => {
         const nameHandler = new AsyncSetNameHandler();
         const idHandler = new AsyncSetIdHandler();
 
-        const registry = (new InMemoryHandlerRegistry<CommandHandler<any>>())
+        const registry = (new InMemoryHandlerRegistry<CommandHandler<any, any>>())
             .register('SetId', idHandler)
             .register('SetName', nameHandler);
 

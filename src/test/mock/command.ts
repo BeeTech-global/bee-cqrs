@@ -1,4 +1,4 @@
-import { CommandHandler } from '../../index';
+import { delay } from './';
 
 export class SetName {
     public constructor(
@@ -27,17 +27,23 @@ export class SetIdHandler {
     }
 }
 
-export class AsyncSetNameHandler implements CommandHandler<SetName> {
+export class AsyncSetNameHandler {
     public name: string;
     public async execute(cmd: SetName): Promise<void> {
+        await delay(2000);
+
         this.name = cmd.name;
+        return;
     }
 }
 
-export class AsyncSetIdHandler implements CommandHandler<SetId> {
+export class AsyncSetIdHandler {
     public id: string;
 
     public async execute(cmd: SetId): Promise<void> {
+        await delay(2000);
+
         this.id = cmd.id;
+        return;
     }
 }

@@ -1,3 +1,5 @@
+import { delay } from './';
+
 export class Multiplier {
     public constructor(
         public readonly value: number,
@@ -13,6 +15,9 @@ export class MultiplierHandler {
 
 export class AsyncMultiplierHandler {
     public async query(query: Multiplier): Promise<number> {
-        return query.value * query.factor;
+        const result = query.value * query.factor;
+        await delay(1000);
+
+        return result;
     }
 }
