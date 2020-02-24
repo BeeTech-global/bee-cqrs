@@ -1,5 +1,5 @@
-import { HandlerRegistry, InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../../';
-import { AsyncMultiplierHandler, Multiplier, MultiplierHandler } from '../../mock/query';
+import { HandlerRegistry, InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../index';
+import { AsyncMultiplierHandler, Multiplier, MultiplierHandler } from '../mock/query';
 import each from "jest-each";
 
 const dataProvider = () => {

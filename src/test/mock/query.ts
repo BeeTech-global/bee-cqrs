@@ -16,7 +16,7 @@ export class MultiplierHandler {
 export class AsyncMultiplierHandler {
     public async query(query: Multiplier): Promise<number> {
         const result = query.value * query.factor;
-        await delay(1000);
+        await delay(200);
 
         return result;
     }

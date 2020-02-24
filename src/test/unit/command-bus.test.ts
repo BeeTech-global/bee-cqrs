@@ -1,11 +1,11 @@
-import { InMemoryHandlerRegistry, CommandBus, CommandHandler } from '../../../index';
+import { InMemoryHandlerRegistry, CommandBus, CommandHandler } from '../../index';
 import {
     AsyncSetIdHandler,
     AsyncSetNameHandler,
     SetId, SetIdHandler,
     SetName,
     SetNameHandler
-} from '../../mock/command';
+} from '../mock/command';
 
 let nameCmd: SetName;
 let idCmd: SetId;
