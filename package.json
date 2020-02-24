@@ -3,10 +3,10 @@
   "version": "0.0.3",
   "description": "BeeTech CQRS framework",
   "main": "src/index.ts",
-  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "jest 'test/'",
-    "coverage": "jest 'test/' --coverage",
+    "test": "jest 'src/test/'",
+    "coverage": "jest 'src/test/' --coverage",
     "build": "tsc"
   },
   "keywords": [

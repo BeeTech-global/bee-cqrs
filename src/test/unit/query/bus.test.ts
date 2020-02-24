@@ -1,4 +1,4 @@
-import { InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../../src';
+import { InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../../index';
 import { AsyncMultiplierHandler, Multiplier, MultiplierHandler } from '../../mock/query';
 
 describe('QueryBus', () => {

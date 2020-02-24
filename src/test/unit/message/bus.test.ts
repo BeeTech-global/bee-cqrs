@@ -1,4 +1,4 @@
-import { HandlerFunc } from '../../../src';
+import { HandlerFunc } from '../../../index';
 import { MiddlewareFoo } from '../../mock/middleware';
 import { Message, StubMessageBus } from '../../mock/message';
 

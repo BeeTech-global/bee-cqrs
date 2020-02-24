@@ -1,4 +1,4 @@
-import { HandlerFunc } from '../../src';
+import { HandlerFunc } from '../../index';
 
 export class MiddlewareFoo {
     private foo: number = 0;

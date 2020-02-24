@@ -1,4 +1,4 @@
-import { CommandHandler } from '../../src';
+import { CommandHandler } from '../../index';
 
 export class SetName {
     public constructor(
