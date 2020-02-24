@@ -1,6 +1,6 @@
-import { HandlerRegistry, InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../index';
+import { HandlerRegistry, InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../';
 import { AsyncMultiplierHandler, Multiplier, MultiplierHandler } from '../mock/query';
-import each from "jest-each";
+import each from 'jest-each';
 
 const dataProvider = () => {
     const dataSet = [
@@ -39,7 +39,8 @@ describe('QueryBus', () => {
                     });
                 } else {
                     test(`returns ${expected}`, async () => {
-                        const result = await queryBus.query(new Multiplier(a, b));
+                        const query = new Multiplier(a, b);
+                        const result = await queryBus.query(query);
                         expect(result).toBe(expected)
                     });
                 }

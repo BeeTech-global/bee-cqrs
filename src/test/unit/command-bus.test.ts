@@ -1,52 +1,54 @@
-import { InMemoryHandlerRegistry, CommandBus, CommandHandler } from '../../index';
-import {
-    AsyncSetIdHandler,
-    AsyncSetNameHandler,
-    SetId, SetIdHandler,
-    SetName,
-    SetNameHandler
-} from '../mock/command';
+import { InMemoryHandlerRegistry, CommandBus, CommandHandler, HandlerRegistry } from '../../';
+import { SetName, AsyncSetNameHandler, SetNameHandler } from '../mock/command';
+import faker from 'faker';
+import each from 'jest-each';
 
-let nameCmd: SetName;
-let idCmd: SetId;
+const dataProvider = () => {
+    const dataSet = [];
+    for (let i = 0; i < 5; i++) {
+        const first = faker.name.firstName();
+        const last = faker.name.lastName();
+        const complete = `${first} ${last}`;
+
+        dataSet.push([first, last, complete])
+    }
+
+    return {
+        'Should execute synchronous commands': { sync: true, dataSet },
+        'Should execute asynchronous commands': { sync: false, dataSet },
+    }
+};
+
+const buildRegistry = (sync: boolean): HandlerRegistry<CommandHandler<any, any>> => {
+    const registry = new InMemoryHandlerRegistry<CommandHandler<any, any>>();
+    if (sync) {
+        return registry.register('SetName', new SetNameHandler());
+    }
+
+    return registry.register('SetName', new AsyncSetNameHandler());
+};
 
 describe('CommandBus', () => {
-    beforeEach(() => {
-        nameCmd = new SetName('fake-name');
-        idCmd = new SetId('fake-id');
-    });
-
-    it('Should execute all sync commands', () => {
-        const nameHandler = new SetNameHandler();
-        const idHandler = new SetIdHandler();
-
-        const registry = (new InMemoryHandlerRegistry<CommandHandler<any, any>>())
-            .register('SetId', idHandler)
-            .register('SetName', nameHandler);
-
+    Object.entries(dataProvider()).forEach(([name, { sync, dataSet }]) => {
+        const registry = buildRegistry(sync);
         const commandBus = new CommandBus(registry);
 
-        commandBus.execute(nameCmd);
-        commandBus.execute(idCmd);
-
-        expect(nameHandler.name).toBe(nameCmd.name);
-        expect(idHandler.id).toBe(idCmd.id);
-    });
-
-    it('Should execute all async commands', async () => {
-        const nameHandler = new AsyncSetNameHandler();
-        const idHandler = new AsyncSetIdHandler();
-
-        const registry = (new InMemoryHandlerRegistry<CommandHandler<any, any>>())
-            .register('SetId', idHandler)
-            .register('SetName', nameHandler);
-
-        const commandBus = new CommandBus(registry);
-
-        await commandBus.execute(nameCmd);
-        expect(nameHandler.name).toBe(nameCmd.name);
-
-        await commandBus.execute(idCmd);
-        expect(idHandler.id).toBe(idCmd.id);
+        describe(name, () => {
+            each(dataSet).describe('returns the complete name of %s', (a, b, expected) => {
+                if (sync) {
+                    test(`expected name: ${expected}`, () => {
+                        const cmd = new SetName(a, b);
+                        commandBus.execute(cmd);
+                        expect(cmd.result).toBe(expected)
+                    });
+                } else {
+                    test(`expected name: ${expected}`, async () => {
+                        const cmd = new SetName(a, b);
+                        await commandBus.execute(cmd);
+                        expect(cmd.result).toBe(expected)
+                    });
+                }
+            });
+        });
     });
 });

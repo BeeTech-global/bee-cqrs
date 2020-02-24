@@ -15,9 +15,10 @@ export class MultiplierHandler {
 
 export class AsyncMultiplierHandler {
     public async query(query: Multiplier): Promise<number> {
-        const result = query.value * query.factor;
-        await delay(200);
-
-        return result;
+        const value = query.value;
+        const factor = query.factor;
+        return await delay<number>(500, () => {
+            return value * factor;
+        });
     }
 }

@@ -1,3 +1,5 @@
-export const delay = (timer: number): Promise<void> => {
-    return new Promise(resolve => setTimeout(resolve, timer));
+export const delay = <T>(timer: number, callback: Function): Promise<T> => {
+    return new Promise(resolve => setTimeout(() => {
+        resolve(callback());
+    }, timer));
 };

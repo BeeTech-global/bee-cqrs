@@ -1,49 +1,25 @@
 import { delay } from './';
 
 export class SetName {
-    public constructor(
-        public readonly name: string,
-    ) {}
-}
+    // let the handler change this state so we can test it
+    public result: string = '';
 
-export class SetId {
     public constructor(
-        public readonly id: string,
+        public readonly firstName: string,
+        public readonly lastName: string,
     ) {}
 }
 
 export class SetNameHandler {
-    public name: string;
     public execute(cmd: SetName): void {
-        this.name = cmd.name;
-    }
-}
-
-export class SetIdHandler {
-    public id: string;
-
-    public execute(cmd: SetId): void {
-        this.id = cmd.id;
+        cmd.result = `${cmd.firstName} ${cmd.lastName}`;
     }
 }
 
 export class AsyncSetNameHandler {
-    public name: string;
-    public async execute(cmd: SetName): Promise<void> {
-        await delay(2000);
-
-        this.name = cmd.name;
-        return;
-    }
-}
-
-export class AsyncSetIdHandler {
-    public id: string;
-
-    public async execute(cmd: SetId): Promise<void> {
-        await delay(2000);
-
-        this.id = cmd.id;
-        return;
+    public async execute(cmd: SetName): Promise<null> {
+        return await delay<null>(200, () => {
+            cmd.result = `${cmd.firstName} ${cmd.lastName}`;
+        });
     }
 }
