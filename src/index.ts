@@ -1,5 +1,5 @@
-export { CommandHandler, CommandBus } from './command-bus';
-export { QueryHandler, QueryBus } from './query-bus';
-export { HandlerFunc, Middleware } from './message-bus';
-export { HandlerRegistry, InMemoryHandlerRegistry } from './registry';
-export { HandlerNotFound, HandlerAlreadyExists } from './error';
+export * from './command-bus';
+export * from './query-bus';
+export * from './message-bus';
+export * from './registry';
+export * from './error';

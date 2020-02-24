@@ -1,4 +1,3 @@
-Developers standard repository
 # Bee CQRS
 
 This is a simple CQRS framework with a Command and a Query bus.
