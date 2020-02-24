@@ -1,6 +1,6 @@
 {
   "name": "@beetech/cqrs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "BeeTech CQRS framework",
   "main": "src/index.ts",
   "typings": "dist/index.d.ts",
