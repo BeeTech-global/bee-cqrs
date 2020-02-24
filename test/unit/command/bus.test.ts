@@ -1,5 +1,4 @@
-import { InMemoryHandlerRegistry } from '../../../src/registry';
-import { CommandBus, CommandHandler } from '../../../src/command-bus';
+import { InMemoryHandlerRegistry, CommandBus, CommandHandler } from '../../../src';
 import {
     AsyncSetIdHandler,
     AsyncSetNameHandler,

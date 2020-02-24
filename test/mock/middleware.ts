@@ -1,4 +1,4 @@
-import { HandlerFunc } from '../../src/message-bus';
+import { HandlerFunc } from '../../src';
 
 export class MiddlewareFoo {
     private foo: number = 0;

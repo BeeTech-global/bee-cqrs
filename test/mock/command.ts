@@ -1,4 +1,4 @@
-import { CommandHandler } from '../../src/command-bus';
+import { CommandHandler } from '../../src';
 
 export class SetName {
     public constructor(
@@ -12,14 +12,14 @@ export class SetId {
     ) {}
 }
 
-export class SetNameHandler implements CommandHandler<SetName> {
+export class SetNameHandler {
     public name: string;
     public execute(cmd: SetName): void {
         this.name = cmd.name;
     }
 }
 
-export class SetIdHandler implements CommandHandler<SetId> {
+export class SetIdHandler {
     public id: string;
 
     public execute(cmd: SetId): void {

@@ -1,24 +1,5 @@
-import { InMemoryHandlerRegistry } from '../../../src/registry';
-import { QueryBus, QueryHandler } from '../../../src/query-bus';
-
-class Multiplier {
-    public constructor(
-        public readonly value: number,
-        public readonly factor: number,
-    ) {}
-}
-
-class MultiplierHandler implements QueryHandler<Multiplier, number>{
-    public query(query: Multiplier): number {
-        return query.value * query.factor;
-    }
-}
-
-class AsyncMultiplierHandler implements QueryHandler<Multiplier, Promise<number>>{
-    public async query(query: Multiplier): Promise<number> {
-        return query.value * query.factor;
-    }
-}
+import { InMemoryHandlerRegistry, QueryBus, QueryHandler } from '../../../src';
+import { AsyncMultiplierHandler, Multiplier, MultiplierHandler } from '../../mock/query';
 
 describe('QueryBus', () => {
     it('Should execute all sync queries', () => {
