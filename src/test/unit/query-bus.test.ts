@@ -19,10 +19,10 @@ const dataProvider = () => {
 const buildRegistry = (sync: boolean): HandlerRegistry<QueryHandler<any, any>> => {
     const registry = new InMemoryHandlerRegistry<QueryHandler<any, any>>();
     if (!sync) {
-        return registry.register('Multiplier', new AsyncMultiplierHandler());
+        return registry.register(Multiplier, new AsyncMultiplierHandler());
     }
 
-    return registry.register('Multiplier', new MultiplierHandler());
+    return registry.register(Multiplier, new MultiplierHandler());
 };
 
 describe('QueryBus', () => {

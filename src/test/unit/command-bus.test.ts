@@ -22,10 +22,10 @@ const dataProvider = () => {
 const buildRegistry = (sync: boolean): HandlerRegistry<CommandHandler<any, any>> => {
     const registry = new InMemoryHandlerRegistry<CommandHandler<any, any>>();
     if (sync) {
-        return registry.register('SetName', new SetNameHandler());
+        return registry.register(SetName, new SetNameHandler());
     }
 
-    return registry.register('SetName', new AsyncSetNameHandler());
+    return registry.register(SetName, new AsyncSetNameHandler());
 };
 
 describe('CommandBus', () => {

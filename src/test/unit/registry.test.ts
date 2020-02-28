@@ -1,5 +1,5 @@
-import { HandlerRegistry, InMemoryHandlerRegistry } from '../../lib/registry';
-import { HandlerAlreadyExists, HandlerNotFound } from '../../lib/error';
+import { HandlerRegistry, InMemoryHandlerRegistry } from '../..';
+import { HandlerAlreadyExists, HandlerNotFound } from '../..';
 
 class GenericCommand {}
 class GenericCommand2 {}
@@ -17,7 +17,7 @@ describe('InMemoryHandlerRegistry', () => {
         const handler = new GenericHandler();
         const cmd = new GenericCommand();
 
-        registry.register('GenericCommand', handler);
+        registry.register(GenericCommand, handler);
         expect(registry.locate(cmd)).toBe(handler);
     });
 
@@ -25,8 +25,8 @@ describe('InMemoryHandlerRegistry', () => {
         const handler = new GenericHandler();
         const cmd = new GenericCommand();
 
-        registry.register('GenericCommand', handler);
-        expect(() => registry.register('GenericCommand', handler)).toThrowError(HandlerAlreadyExists);
+        registry.register(GenericCommand, handler);
+        expect(() => registry.register(GenericCommand, handler)).toThrowError(HandlerAlreadyExists);
         expect(registry.locate(cmd)).toBe(handler);
     });
 
@@ -41,8 +41,8 @@ describe('InMemoryHandlerRegistry', () => {
         const handler1 = new GenericHandler();
         const handler2 = new GenericHandler2();
 
-        registry.register('GenericCommand', handler1);
-        registry.register('GenericCommand2', handler2);
+        registry.register(GenericCommand, handler1);
+        registry.register(GenericCommand2, handler2);
 
         expect(registry.locate(cmd1)).toBe(handler1);
         expect(registry.locate(cmd2)).toBe(handler2);
