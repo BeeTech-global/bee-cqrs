@@ -1,0 +1,20 @@
+{
+  "extends": ["airbnb-typescript"],
+  "env": {
+    "jest" : true
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "version": "666"
+    }
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "prefer-arrow-callback": 0,
+    "func-names": 0,
+    "newline-before-return": 2
+  }
+}
